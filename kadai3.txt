@@ -1,0 +1,109 @@
+練習問題 3.1 
+この節で紹介したスクリプトで最後の行を最初に持ってきたスクリプトに
+変更して実行してみる。どのようなメッセージがでるか？
+C:\Users\12T5087B\Anaconda\python>python kadai3.py
+Traceback (most recent call last):
+  File "kadai3.py", line 1, in <module>
+    repeat_lyrics()
+NameError: name 'repeat_lyrics' is not defined
+
+
+練習問題 3.2 
+同様に関数定義のrepeat_lyrics をprint_lyrics の前で行うように
+スクリプトを変更し、実行してみる。何が起こるか？
+C:\Users\12T5087B\Anaconda\python>python kadai3.py
+I'm a lumberjack, and I'm okay.
+I sleep all night and I work all day.
+I'm a lumberjack, and I'm okay.
+I sleep all night and I work all day.
+→関数定義のrepeatとprintは入れ替えても実行結果は変わらない
+
+練習問題 3.3 
+Python は文字列の長さを返す組み込み関数len、例えばlen('allen')
+は5 を返す、を提供している。
+文字列の表示で、文字列の最後の文字が 70 桁にくるようなright_justify 関数を作成
+32
+せよ。
+
+>>> def right_justify(a):
+...     print "%70s" % a
+...
+>>> right_justify('allen')
+                                                                 allen
+
+
+練習問題3.4 関数オブジェクト自体も関数の引数とすることができる。例えば、do_twice
+関数は関数オブジェクトを引数として受け取りその関数を二度実行する、つまり
+def do_twice(f):
+f()
+f()
+さて、do_twice が以下の関数print_spam を引数とする使用例をみてみよう：
+def print_spam():
+print 'spam'
+do_twice(print_spam)
+この関数を以下の順序を踏んで変更せよ：
+１．上記のプログラムをスクリプトとして書き、実行せよ。
+C:\Users\12T5087B\Anaconda\python>python kadai3.py
+spam
+spam
+
+２．引数を二つ持つように do_twice を変更せよ。一つの引数は関数オブジェクトであり、
+他はこの関数が受け取る引数の値である。
+def do_twice(f, g):
+    f(g)
+    f(g)
+
+def print_spam(a):
+    print 'spam'
+    
+do_twice(print_spam,print_spam)
+実行結果
+C:\Users\12T5087B\Anaconda\python>python kadai3.py
+spam
+spam
+
+３．print_spam をより一般的な関数print_twice に変更せよ。この新しい関数は引数
+を一つ持ち、それを二回表示する。
+def do_twice(f, g):
+    f(g)
+    f(g)
+
+def print_twice(g):
+    print g
+    print g
+    
+do_twice(print_twice,'abc')
+実行結果
+C:\Users\12T5087B\Anaconda\python>python kadai3.py
+abc
+abc
+abc
+abc
+
+４．新しい関数 do_four を作成せよ。この関数は関数オブジェクトを引数の一つとし、他
+の引数はこの関数が引数として受け取る値である。この新しい関数は引数として受け
+取った関数を四回実行する。この新しい関数の本体は二つの文で書ける。四つではな
+いよ。
+def do_twice(f, g):
+    f(g)
+    f(g)
+
+def print_twice(g):
+    print g
+    print g
+
+def do_four(f, g):
+    do_twice(f, g)
+    do_twice(f, g)
+
+do_four(print_twice, 'spam')
+実行結果
+C:\Users\12T5087B\Anaconda\python>python kadai3.py
+spam
+spam
+spam
+spam
+spam
+spam
+spam
+spam
